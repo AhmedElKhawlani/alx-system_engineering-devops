@@ -3,11 +3,11 @@
 # Configure Nginx server so that /redirect_me is redirecting to another page
 # redirection must be a “301 Moved Permanently”
 
-ADD301_REDIRECT="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
-
 sudo apt-get update
-sudo apt-get install -y nginx
-sudo chown -R ubuntu /var/www
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
-sudo sed -i "30i $ADD301_REDIRECT" /etc/nginx/sites-available/default
+sudo apt-get -y install nginx
+sudo touch /var/www/html/index.html
+sudo chown -R "$USER":"$USER" /var/www
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+newlines="\\\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}"
+sudo sed -i "/server {/a $location_block" /etc/nginx/sites-available/default
 sudo service nginx restart
