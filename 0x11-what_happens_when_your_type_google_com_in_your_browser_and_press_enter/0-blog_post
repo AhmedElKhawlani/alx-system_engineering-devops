@@ -1,0 +1,70 @@
+**What Happens When You Type "https://www.google.com" in the Browser and Press Enter**
+
+1. DNS Request
+When https://www.google.com is typed into the browser and Enter is pressed, the first step involves translating this human-readable address into an IP address that computers can understand. This translation is performed by the Domain Name System (DNS).
+
+Here’s how it works:
+
+- Browser Cache: The browser first checks its own cache to see if it has recently looked up this domain name.
+- Operating System Cache: If not found in the browser cache, it checks the operating system cache.
+- Router Cache: If the OS cache doesn't have it, the request is sent to the router, which has its own cache.
+- ISP's DNS Server: If the router doesn’t have the IP address, the request is forwarded to the Internet Service Provider’s (ISP) DNS servers.
+- Recursive Search: If the ISP’s DNS servers don’t have the answer, they perform a recursive search, querying other DNS servers on the internet until the IP address for www.google.com is found and returned to the browser.
+
+
+2. TCP/IP Connection
+With the IP address in hand, the browser now needs to establish a connection to Google’s servers. This is done using the Transmission Control Protocol/Internet Protocol (TCP/IP).
+
+Here's a simplified breakdown:
+
+- TCP Handshake: The browser sends a TCP SYN (synchronize) packet to the server. The server responds with a SYN-ACK (synchronize-acknowledge) packet. Finally, the browser sends an ACK (acknowledge) packet back to the server, completing the handshake.
+- IP Addressing: This process happens over the IP protocol, which handles routing the data packets across the internet to the correct server.
+
+
+3. Firewall
+Both the user's system and Google’s servers likely have firewalls in place. Firewalls are security systems that monitor and control incoming and outgoing network traffic based on predetermined security rules.
+
+- Client-Side Firewall: Ensures that only authorized traffic leaves and enters the network.
+- Server-Side Firewall: Protects Google’s servers from unauthorized access and potential threats by filtering the incoming traffic.
+
+
+4. HTTPS/SSL
+After establishing a connection, the browser needs to ensure that the communication is secure. This is where HTTPS (Hypertext Transfer Protocol Secure) and SSL (Secure Sockets Layer) come into play.
+
+- SSL Handshake: The browser and Google’s server perform an SSL handshake to establish a secure connection. This involves:
+- Certificate Exchange: The server sends its SSL certificate to the browser, which contains the server’s public key.
+- Certificate Validation: The browser validates the certificate against its list of trusted Certificate Authorities (CAs).
+- Session Key Creation: Once validated, both parties use the public key to generate a session key for encrypting the data.
+
+
+5. Load-Balancer
+Google’s infrastructure is vast, with numerous servers handling requests to ensure reliability and performance. To manage this, a load balancer is used.
+
+- Distributing Requests: The load balancer distributes incoming requests across multiple servers. This ensures no single server is overwhelmed, improving performance and availability.
+- Health Checks: It also performs regular health checks on the servers, rerouting traffic away from any servers that are down or performing poorly.
+
+
+6. Web Server
+Once the request reaches one of Google’s servers, it first hits a web server. The web server handles HTTP requests from clients (browsers).
+
+- Static Content Delivery: If the request is for static content like HTML, CSS, JavaScript, or images, the web server quickly retrieves and sends these files back to the browser.
+- Request Forwarding: If the request requires dynamic content (like search results), the web server forwards the request to an application server.
+
+
+7. Application Server
+The application server is responsible for executing server-side code and generating dynamic content.
+
+- Processing the Request: For a Google search, the application server processes the search query, runs algorithms to fetch relevant results, and prepares the data to be sent back to the browser.
+- Interacting with Databases: This server might also interact with databases to retrieve or store data needed for the request.
+
+
+8. Database
+Google maintains extensive databases to store vast amounts of information.
+
+- Querying Data: The application server queries the database to fetch search results relevant to the query.
+- Database Management: Google’s databases are highly optimized and distributed to handle massive amounts of data and numerous simultaneous queries efficiently.
+- Final Steps: Rendering the Page
+After the application server processes the request and retrieves the necessary data, it sends this data back to the web server, which then sends it to the browser. The browser then:
+
+Parses the HTML: Parses the HTML, CSS, and JavaScript to render the page.
+Renders Content: Displays the search results on the screen, allowing interaction with them.
