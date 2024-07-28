@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Installs nginx web server with a redirect
 
 apt-get update
 apt-get install -y nginx
