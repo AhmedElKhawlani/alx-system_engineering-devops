@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 Python script that, using this REST API, for a given employee ID.
-Returns information about his/her TODO list progress.
+Exporst a CSV file about his/her TODO list progress.
 """
 
 if __name__ == "__main__":
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     n = data2["username"]
 
     with open(sys.argv[1] + ".csv", "w") as file:
-        csv_file = csv.writer(file)
+        csv_file = csv.writer(file, quotechar='"', quoting=csv.QUOTE_ALL)
         lines = []
         for task in list_data1:
             if task["userId"] == int(sys.argv[1]):
