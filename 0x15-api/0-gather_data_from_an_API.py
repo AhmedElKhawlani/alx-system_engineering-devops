@@ -5,9 +5,9 @@ Returns information about his/her TODO list progress.
 """
 
 if __name__ == "__main__":
-    import sys
-    import requests
     import json
+    import requests
+    import sys
 
     url1 = "https://jsonplaceholder.typicode.com/todos/"
     response1 = requests.get(url1)
@@ -27,7 +27,7 @@ if __name__ == "__main__":
     data2 = json.loads(data2)
     EMPLOYEE_NAME = data2["name"]
 
-    print(f'Employee {EMPLOYEE_NAME} is done with tasks({completed}/{total})')
+    print(f'Employee {EMPLOYEE_NAME} is done with tasks({completed}/{total}):')
     for task in list_data1:
         if task["userId"] == int(sys.argv[1]) and task["completed"]:
             print(f'\t {task["title"]}')
