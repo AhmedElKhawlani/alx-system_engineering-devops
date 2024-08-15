@@ -16,6 +16,9 @@ def number_of_subscribers(subreddit):
     if (not subreddit) or (type(subreddit) is not str):
         return 0
     link = 'http://www.reddit.com/r/{}/about.json'.format(subreddit)
-    req = requests.get(link).json()
-    subs = req.get("data", {}).get("subscribers", 0)
+    response = requests.get(link)
+    if response.status_code == 302:
+        return 0
+    data = response.json()
+    subs = data.get("data", {}).get("subscribers", 0)
     return subs
