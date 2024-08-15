@@ -15,8 +15,9 @@ def number_of_subscribers(subreddit):
 
     if (not subreddit) or (type(subreddit) is not str):
         return 0
-    link = 'http://www.reddit.com/r/{}/about.json'.format(subreddit)
-    response = requests.get(link)
+    link = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    headers = {"User-Agent": "Ahmed EL KHAWLANI"}
+    response = requests.get(link, headers=headers, allow_redirects=False)
     if response.status_code == 302:
         return 0
     data = response.json()
